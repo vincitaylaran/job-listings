@@ -1,5 +1,3 @@
-"use strict";
-
 const d = require("./data.json");
 
 const listings = JSON.parse(JSON.stringify(d));
@@ -15,11 +13,14 @@ let filteredListings = listings.map((listing) => {
 });
 
 let selectedKeyword = null;
-let criteria = new Array();
+let criteria = [];
 
 const filter = (keyword) => {
+  // convert it to lowercase since casing on some of the objects is not consistent. For example: some objects have "FullStack" while others have "Fullstack" (lowercase S).
   const keywordLowercase = keyword.toLowerCase();
-  criteria.push(keyword); // I don't push keywordLowercase because I want the text in the components that will render criteria array to have the original casing.
+
+  // I don't push keywordLowercase because I want the text in the components that will render the criteria array to have the original casing.
+  criteria.push(keyword);
   selectedKeyword = keywordLowercase;
 
   filteredListings = filteredListings.filter((listing) =>
@@ -59,11 +60,28 @@ const remove = (keyword) => {
   return filteredListings;
 };
 
-console.log("FILTER FOR fullstack -> ", filter("Fullstack"));
-console.log("FILTER FOR javascript and fullstack -> ", filter("JavaScript"));
-console.log("FILTER FOR sass, javascript, and fullstack -> ", filter("Sass"));
-console.log("FILTER FOR javascript and fullstack -> ", remove("Sass"));
-console.log(criteria);
-console.log("FILTER FOR javascript and fullstack -> ", remove("Fullstack"));
-console.log("FILTER FOR show all -> ", remove("JavaScript"));
-console.log(criteria);
+const printListings = () => {
+  console.log(`There are ${filteredListings.length} job(s)`);
+
+  filteredListings.forEach((listing) => {
+    console.log({ id: listing.id, keywords: listing.keywords });
+  });
+};
+
+filter("javascript");
+printListings();
+
+filter("vue");
+printListings();
+
+remove("javascript");
+printListings();
+
+remove("vue");
+printListings();
+
+filter("ruby");
+printListings();
+
+clear();
+printListings();
