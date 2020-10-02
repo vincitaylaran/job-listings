@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import BREAKPOINT from "../styles/breakpoints"
 
 const StyledButton = styled.button`
   display: flex;
@@ -19,6 +20,10 @@ const StyledButton = styled.button`
   &:hover {
     background-color: #5ca5a5;
     color: #ffffff;
+  }
+
+  @media all and (max-width: ${BREAKPOINT.laptop}) {
+    margin-top: 13px;
   }
 `
 

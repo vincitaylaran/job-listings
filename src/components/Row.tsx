@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import BREAKPOINT from "../styles/breakpoints"
 
 export const StyledRow = styled.div`
   width: 85%;
@@ -17,7 +18,7 @@ const StyledRowContent = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media all and (max-width: 425px) {
+  @media all and (max-width: ${BREAKPOINT.mobile}) {
     flex-direction: column;
   }
 `
