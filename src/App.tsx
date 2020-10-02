@@ -1,23 +1,28 @@
 import React from "react"
-import Row from "./components/Row"
+import Listing from "./components/Listing"
+
+// <Header />
+// <Criteria />
+// data.map(listing => <Listing {...listing} />)
 
 function App() {
   return (
-    <div>
-      <Row>
+    <main>
+      <Listing>
         <div>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam quisquam
-          sit iusto, quo reprehenderit voluptate animi veniam sunt libero dicta
-          accusantium minus necessitatibus cum a molestias accusamus eveniet
-          reiciendis nulla?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At numquam
+          sint, nostrum reprehenderit qui officia tenetur, blanditiis molestiae
+          quasi nemo ex quas labore accusantium magni iure ipsam, fugit ratione
+          excepturi!
         </div>
         <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio
-          corporis tempora sapiente dolores eos, modi inventore pariatur cum
-          nulla eveniet quos quam quae iste, quasi et! Est dignissimos enim a.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At numquam
+          sint, nostrum reprehenderit qui officia tenetur, blanditiis molestiae
+          quasi nemo ex quas labore accusantium magni iure ipsam, fugit ratione
+          excepturi!
         </div>
-      </Row>
-    </div>
+      </Listing>
+    </main>
   )
 }
 

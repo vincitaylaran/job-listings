@@ -1,11 +1,12 @@
 import React from "react"
 import styled from "styled-components"
 
-const StyledRow = styled.div`
-  width: 80%;
+export const StyledRow = styled.div`
+  width: 85%;
   background-color: #ffffff;
-  border-radius: 5px;
   padding: 25px;
+
+  border-radius: 5px;
 `
 
 const StyledRowContent = styled.div`
@@ -19,11 +20,12 @@ const StyledRowContent = styled.div`
 
 interface Props {
   children?: React.ReactNode
+  style?: object | null
 }
 
-const Row: React.FC<Props> = ({ children }) => {
+const Row: React.FC<Props> = ({ children, style }) => {
   return (
-    <StyledRow>
+    <StyledRow style={style ? style : null}>
       <StyledRowContent>{children}</StyledRowContent>
     </StyledRow>
   )

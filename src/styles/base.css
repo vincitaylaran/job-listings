@@ -4,3 +4,8 @@ html {
   background-color: hsl(180, 52%, 96%);
   font-family: "Spartan", sans-serif;
 }
+
+main {
+  display: flex;
+  justify-content: center;
+}
