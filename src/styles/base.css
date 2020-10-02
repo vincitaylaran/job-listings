@@ -9,3 +9,8 @@ main {
   display: flex;
   justify-content: center;
 }
+
+button,
+a {
+  transition-duration: 150ms;
+}

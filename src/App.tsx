@@ -8,20 +8,7 @@ import Listing from "./components/Listing"
 function App() {
   return (
     <main>
-      <Listing>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At numquam
-          sint, nostrum reprehenderit qui officia tenetur, blanditiis molestiae
-          quasi nemo ex quas labore accusantium magni iure ipsam, fugit ratione
-          excepturi!
-        </div>
-        <div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At numquam
-          sint, nostrum reprehenderit qui officia tenetur, blanditiis molestiae
-          quasi nemo ex quas labore accusantium magni iure ipsam, fugit ratione
-          excepturi!
-        </div>
-      </Listing>
+      <Listing />
     </main>
   )
 }
