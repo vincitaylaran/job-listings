@@ -7,6 +7,10 @@ export const StyledRow = styled.div`
   padding: 25px;
 
   border-radius: 5px;
+
+  -webkit-box-shadow: 0px 8px 12px 1px rgba(0, 0, 0, 0.11);
+  -moz-box-shadow: 0px 8px 12px 1px rgba(0, 0, 0, 0.11);
+  box-shadow: 0px 8px 12px 1px rgba(0, 0, 0, 0.11);
 `
 
 const StyledRowContent = styled.div`
