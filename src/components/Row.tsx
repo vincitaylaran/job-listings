@@ -3,18 +3,19 @@ import styled from "styled-components"
 import BREAKPOINT from "../styles/breakpoints"
 
 export const StyledRow = styled.div`
-  width: 85%;
+  width: 80%;
   background-color: #ffffff;
   padding: 25px;
+  margin-top: 20px;
 
   border-radius: 5px;
 
-  -webkit-box-shadow: 0px 8px 12px 1px rgba(0, 0, 0, 0.11);
-  -moz-box-shadow: 0px 8px 12px 1px rgba(0, 0, 0, 0.11);
-  box-shadow: 0px 8px 12px 1px rgba(0, 0, 0, 0.11);
+  -webkit-box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.11);
+  -moz-box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.11);
+  box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.11);
 `
 
-const StyledRowContent = styled.div`
+const StyledRowBody = styled.div`
   display: flex;
   justify-content: space-between;
 
@@ -31,7 +32,7 @@ interface Props {
 const Row: React.FC<Props> = ({ children, style }) => {
   return (
     <StyledRow style={style ? style : null}>
-      <StyledRowContent>{children}</StyledRowContent>
+      <StyledRowBody>{children}</StyledRowBody>
     </StyledRow>
   )
 }

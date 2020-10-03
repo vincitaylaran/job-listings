@@ -1,31 +1,43 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import Listing from "./components/Listing"
+import data from "./data.json"
+import { Props as IListing } from "./components/Listing"
 
 // <Header />
 // <Criteria />
 // data.map(listing => <Listing {...listing} />)
 
-const listing = {
-  id: 1,
-  company: "Photosnap",
-  logo: "../../images/photosnap.svg",
-  new: true,
-  featured: true,
-  position: "Senior Frontend Developer",
-  role: "Frontend",
-  level: "Senior",
-  postedAt: "1d ago",
-  contract: "Full Time",
-  location: "USA Only",
-  languages: ["HTML", "CSS", "JavaScript"],
-  tools: ["React"],
-  keywords: ["Frontend", "Senior", "HTML", "CSS", "JavaScript", "React"],
-}
-
 function App() {
+  const [listings, setListings] = useState<IListing[]>([])
+
+  useEffect(() => {
+    function createListings(): IListing[] {
+      const listings: IListing[] = data.map((listing) => {
+        return {
+          ...listing,
+          logo: `../Icons/${listing.company}`,
+          isNew: listing.new, // TODO: find a way to override Object prototype "new" keyword
+          isFeatured: listing.featured,
+          keywords: [
+            listing.role,
+            listing.level,
+            ...listing.languages,
+            ...listing.tools,
+          ],
+        }
+      })
+
+      return listings
+    }
+
+    setListings(createListings())
+  }, [])
+
   return (
     <main>
-      <Listing {...listing} isNew={listing.new} isFeatured={listing.featured} />
+      {listings.map((listing) => (
+        <Listing {...listing} />
+      ))}
     </main>
   )
 }
