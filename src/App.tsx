@@ -36,7 +36,7 @@ function App() {
   return (
     <main>
       {listings.map((listing) => (
-        <Listing {...listing} />
+        <Listing key={listing.id} {...listing} />
       ))}
     </main>
   )
