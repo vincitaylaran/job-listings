@@ -19,6 +19,20 @@ const ListingSubcontent = styled.div`
   }
 `
 
+const ListingInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+  height: 100%;
+
+  & div {
+    background-color: red;
+    height: 33%;
+    display: flex;
+    align-items: center;
+  }
+`
+
 export interface Props {
   id: number
   company: string
@@ -61,9 +75,25 @@ const Listing: React.FC<Props> = ({
       style={isNew && isFeatured ? { borderLeft: "5px solid #5ca5a5" } : null}
     >
       <ListingContent>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Logo />
-        </Suspense>
+        <div>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Logo />
+          </Suspense>
+        </div>
+
+        <ListingInfoContainer>
+          <div>
+            <span>{company}</span>
+            <span>{isNew ? "new" : null}</span>
+            <span>{isFeatured ? "featured" : null}</span>
+          </div>
+
+          <div>{position}</div>
+
+          <div>
+            {postedAt} - {contract} - {location}
+          </div>
+        </ListingInfoContainer>
       </ListingContent>
       <ListingSubcontent>
         {keywords.map((keyword, index) => (
