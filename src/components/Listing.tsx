@@ -3,6 +3,7 @@ import Row from "./Row"
 import styled from "styled-components"
 import Button from "./Button"
 import BREAKPOINT from "../styles/breakpoints"
+import { getAllJSDocTagsOfKind } from "typescript"
 
 const ListingContent = styled.div`
   display: flex;
@@ -26,11 +27,58 @@ const ListingInfoContainer = styled.div`
   height: 100%;
 
   & div {
-    background-color: red;
     height: 33%;
     display: flex;
     align-items: center;
   }
+`
+
+const CompanyName = styled.span`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  margin-right: 15px;
+
+  color: #5ca5a5;
+`
+const Tag = styled.span`
+  background-color: ${(props) => (props.secondary ? "#2B3939" : "#5ca5a5")};
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 9px;
+  padding: 3px 7px;
+  line-height: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 10px;
+  letter-spacing: 0.75px;
+  margin-right: 7px;
+`
+
+const Position = styled.div`
+  color: #5ca5a5;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  color: #000000;
+  transition-duration: 150ms;
+  cursor: pointer;
+
+  &:hover {
+    color: #5ca5a5;
+  }
+`
+const Miscellaneous = styled.span`
+  margin-top: 5px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+
+  letter-spacing: -0.115385px;
+
+  color: #7c8f8f;
 `
 
 export interface Props {
@@ -83,16 +131,20 @@ const Listing: React.FC<Props> = ({
 
         <ListingInfoContainer>
           <div>
-            <span>{company}</span>
-            <span>{isNew ? "new" : null}</span>
-            <span>{isFeatured ? "featured" : null}</span>
+            <CompanyName>{company}</CompanyName>
+            {isNew && isFeatured ? (
+              <div>
+                <Tag>new!</Tag>
+                <Tag secondary>featured</Tag>
+              </div>
+            ) : null}
           </div>
 
-          <div>{position}</div>
+          <Position>{position}</Position>
 
-          <div>
-            {postedAt} - {contract} - {location}
-          </div>
+          <Miscellaneous>
+            {postedAt} • {contract} • {location}
+          </Miscellaneous>
         </ListingInfoContainer>
       </ListingContent>
       <ListingSubcontent>
