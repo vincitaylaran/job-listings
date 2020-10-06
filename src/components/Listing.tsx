@@ -28,6 +28,10 @@ const ListingInfoContainer = styled.div`
   flex-direction: column;
   height: 100%;
 
+  @media all and (max-width: ${BREAKPOINT.mobile}) {
+    padding-top: 10px;
+  }
+
   @media all and (min-width: ${BREAKPOINT.tablet}) {
     margin: 0 20px;
   }
@@ -136,17 +140,15 @@ const Listing: React.FC<Props> = ({
 
   return (
     <Row
-      style={isNew && isFeatured ? { borderLeft: "5px solid #5ca5a5" } : null}
+      style={isNew && isFeatured ? { borderLeft: "5px solid #5ca5a5" } : null} // TODO: turn this into an object.
     >
       <ListingContent>
-        <div>
-          <Suspense fallback={<div>Loading...</div>}>
-            {/* Refer to "base.css" for the styles of SvgLogo!
+        <Suspense fallback={<div>Loading...</div>}>
+          {/* Refer to "base.css" for the styles of SvgLogo!
             Giving it a "className" attribute is the only way I can think of when dynamically resizing SvgLogo based on
             viewport width */}
-            <SvgLogo className="logo" />
-          </Suspense>
-        </div>
+          <SvgLogo className="logo" />
+        </Suspense>
 
         <ListingInfoContainer>
           <div>
