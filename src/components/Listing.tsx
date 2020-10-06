@@ -1,8 +1,8 @@
-import React, { Suspense } from "react";
-import Row from "./Row";
-import styled from "styled-components";
-import Button from "./Button";
-import BREAKPOINT from "../styles/breakpoints";
+import React, { Suspense } from "react"
+import Row from "./Row"
+import styled from "styled-components"
+import Button from "./Button"
+import BREAKPOINT from "../styles/breakpoints"
 
 const ListingContent = styled.div`
   display: flex;
@@ -10,7 +10,7 @@ const ListingContent = styled.div`
   @media all and (max-width: ${BREAKPOINT.mobile}) {
     flex-direction: column;
   }
-`;
+`
 
 const ListingSubcontent = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ const ListingSubcontent = styled.div`
     border-top: 1px solid #b7c4c4;
     margin-top: 13px;
   }
-`;
+`
 
 const ListingInfoContainer = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ const ListingInfoContainer = styled.div`
     display: flex;
     align-items: center;
   }
-`;
+`
 
 const CompanyName = styled.span`
   font-style: normal;
@@ -50,7 +50,7 @@ const CompanyName = styled.span`
   @media all and (max-width: ${BREAKPOINT.tablet}) {
     font-size: 13px;
   }
-`;
+`
 const Tag = styled.span`
   background-color: ${(props) => (props.secondary ? "#2B3939" : "#5ca5a5")};
   color: #ffffff;
@@ -63,7 +63,7 @@ const Tag = styled.span`
   border-radius: 10px;
   letter-spacing: 0.75px;
   margin-right: 7px;
-`;
+`
 
 const Position = styled.div`
   color: #5ca5a5;
@@ -83,7 +83,7 @@ const Position = styled.div`
   &:hover {
     color: #5ca5a5;
   }
-`;
+`
 const Miscellaneous = styled.span`
   font-style: normal;
   font-weight: 500;
@@ -95,23 +95,23 @@ const Miscellaneous = styled.span`
   @media all and (max-width: ${BREAKPOINT.tablet}) {
     font-size: 13px;
   }
-`;
+`
 
 export interface Props {
-  id: number;
-  company: string;
-  logo: string;
-  isNew: boolean;
-  isFeatured: boolean;
-  position: string;
-  role: string;
-  level: string;
-  postedAt: string;
-  contract: string;
-  location: string;
-  languages: string[];
-  tools: string[];
-  keywords: string[];
+  id: number
+  company: string
+  logo: string
+  isNew: boolean
+  isFeatured: boolean
+  position: string
+  role: string
+  level: string
+  postedAt: string
+  contract: string
+  location: string
+  languages: string[]
+  tools: string[]
+  keywords: string[]
 }
 
 const Listing: React.FC<Props> = ({
@@ -130,9 +130,9 @@ const Listing: React.FC<Props> = ({
   tools,
   keywords,
 }) => {
-  const Logo = React.lazy(
+  const SvgLogo = React.lazy(
     () => import(`../icons/${company.replace(/[ ,.]/g, "")}`)
-  );
+  )
 
   return (
     <Row
@@ -141,7 +141,10 @@ const Listing: React.FC<Props> = ({
       <ListingContent>
         <div>
           <Suspense fallback={<div>Loading...</div>}>
-            <Logo width="88px" height="88px" />
+            {/* Refer to "base.css" for the styles of SvgLogo!
+            Giving it a "className" attribute is the only way I can think of when dynamically resizing SvgLogo based on
+            viewport width */}
+            <SvgLogo className="logo" />
           </Suspense>
         </div>
 
@@ -169,7 +172,7 @@ const Listing: React.FC<Props> = ({
         ))}
       </ListingSubcontent>
     </Row>
-  );
-};
+  )
+}
 
-export default Listing;
+export default Listing

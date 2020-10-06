@@ -3,7 +3,7 @@ import styled from "styled-components"
 import BREAKPOINT from "../styles/breakpoints"
 
 export const StyledRow = styled.div`
-  width: 80%;
+  width: 70%;
   background-color: #ffffff;
   padding: 25px;
   margin-top: 20px;
@@ -13,6 +13,10 @@ export const StyledRow = styled.div`
   -webkit-box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.11);
   -moz-box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.11);
   box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.11);
+
+  @media all and (max-width: ${BREAKPOINT.mobile}) {
+    width: 327px;
+  }
 `
 
 const StyledRowBody = styled.div`
