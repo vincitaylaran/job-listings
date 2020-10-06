@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import styled from "styled-components"
 import BREAKPOINT from "../styles/breakpoints"
 
@@ -29,10 +29,24 @@ const StyledButton = styled.button`
 
 interface Props {
   children?: React.ReactNode
+  value: string
+  onClick?: (...args) => any
 }
 
-const Button: React.FC<Props> = ({ children }) => {
-  return <StyledButton>{children}</StyledButton>
+const Button: React.FC<Props> = ({ children, onClick, value }) => {
+  const buttonEl = useRef<HTMLButtonElement>(null)
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(buttonEl.current!.value)
+    }
+  }
+
+  return (
+    <StyledButton ref={buttonEl} value={value} onClick={handleClick}>
+      {children}
+    </StyledButton>
+  )
 }
 
 export default Button

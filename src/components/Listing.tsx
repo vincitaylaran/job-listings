@@ -28,18 +28,18 @@ const ListingInfoContainer = styled.div`
   flex-direction: column;
   height: 100%;
 
+  & div {
+    height: 33%;
+    display: flex;
+    align-items: center;
+  }
+
   @media all and (max-width: ${BREAKPOINT.mobile}) {
     padding-top: 10px;
   }
 
   @media all and (min-width: ${BREAKPOINT.tablet}) {
     margin: 0 20px;
-  }
-
-  & div {
-    height: 33%;
-    display: flex;
-    align-items: center;
   }
 `
 
@@ -116,6 +116,7 @@ export interface Props {
   languages: string[]
   tools: string[]
   keywords: string[]
+  onKeyword: (keyword: string) => void
 }
 
 const Listing: React.FC<Props> = ({
@@ -133,6 +134,7 @@ const Listing: React.FC<Props> = ({
   languages,
   tools,
   keywords,
+  onKeyword,
 }) => {
   const SvgLogo = React.lazy(
     () => import(`../icons/${company.replace(/[ ,.]/g, "")}`)
@@ -169,8 +171,10 @@ const Listing: React.FC<Props> = ({
         </ListingInfoContainer>
       </ListingContent>
       <ListingSubcontent>
-        {keywords.map((keyword, index) => (
-          <Button key={index}>{keyword}</Button>
+        {keywords.map((keyword) => (
+          <Button key={`${keyword}-${id}`} value={keyword} onClick={onKeyword}>
+            {keyword}
+          </Button>
         ))}
       </ListingSubcontent>
     </Row>
