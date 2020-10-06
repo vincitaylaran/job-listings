@@ -5,9 +5,12 @@ import { Props as IListing } from "./components/Listing"
 import Criteria from "./components/Criteria"
 
 function App() {
+  const [listingsOriginalCopy, setListingsOriginalCopy] = useState<
+    IListing | any
+  >([])
   const [listings, setListings] = useState<IListing[]>([])
   const [criteria, setCriteria] = useState<string[]>([])
-  const [selectedKeyword, setSelectedKeyword] = useState<string>()
+  const [selectedKeyword, setSelectedKeyword] = useState<string | null>()
 
   useEffect(() => {
     const listingsCopy = JSON.parse(JSON.stringify(data))
@@ -22,10 +25,11 @@ function App() {
       return { ...listing, keywords }
     })
 
+    setListingsOriginalCopy(listingsWithKeywords)
     setListings(listingsWithKeywords)
   }, [])
 
-  const filter = (keyword?: string) => {
+  const filter = (keyword?: string): void => {
     console.log("Listings before filter -> ", listings)
     if (keyword) {
       const keywordLowercase = keyword.toLowerCase()
@@ -48,9 +52,16 @@ function App() {
     }
   }
 
+  const clear = (): void => {
+    const originalListings: IListing[] = listingsOriginalCopy
+    setListings(originalListings)
+    setCriteria([])
+    setSelectedKeyword(null)
+  }
+
   return (
     <main>
-      <Criteria />
+      <Criteria keywords={criteria} onClear={clear} />
       {listings.map((listing) => (
         <Listing {...listing} key={listing.id} onKeyword={filter} />
       ))}

@@ -3,13 +3,20 @@ import Row from "./Row"
 
 interface Props {
   keywords?: string[]
+  onClear?: () => void
 }
 
-const Criteria: React.FC<Props> = ({ keywords }) => {
+const Criteria: React.FC<Props> = ({ keywords, onClear }) => {
+  const handleClear = () => {
+    if (onClear) {
+      onClear()
+    }
+  }
+
   return (
     <Row>
-      <div>Keywords</div>
-      <div>Clear button</div>
+      <div>{keywords ? keywords.map((word) => <span>{word}</span>) : null}</div>
+      <button onClick={handleClear}>Clear button</button>
     </Row>
   )
 }
