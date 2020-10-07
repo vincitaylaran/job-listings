@@ -4,12 +4,19 @@ import Row from "./Row"
 interface Props {
   keywords?: string[]
   onClear?: () => void
+  onRemove?: (keyword?: string) => void
 }
 
-const Criteria: React.FC<Props> = ({ keywords, onClear }) => {
+const Criteria: React.FC<Props> = ({ keywords, onClear, onRemove }) => {
   const handleClear = () => {
     if (onClear) {
       onClear()
+    }
+  }
+
+  const handleRemove = (e) => {
+    if (onRemove) {
+      onRemove(e.target.value)
     }
   }
 
@@ -18,7 +25,13 @@ const Criteria: React.FC<Props> = ({ keywords, onClear }) => {
       <div>
         {keywords
           ? keywords.map((word, index) => (
-              <span key={`${word}-${index}`}>{word}</span>
+              <button
+                key={`${word}-${index}`}
+                value={word}
+                onClick={handleRemove}
+              >
+                {word}
+              </button>
             ))
           : null}
       </div>

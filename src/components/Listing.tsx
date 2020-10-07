@@ -155,12 +155,10 @@ const Listing: React.FC<Props> = ({
         <ListingInfoContainer>
           <div>
             <CompanyName>{company}</CompanyName>
-            {isNew && isFeatured ? (
-              <div>
-                <Tag>new!</Tag>
-                <Tag secondary>featured</Tag>
-              </div>
-            ) : null}
+            <div>
+              {isNew && <Tag>new!</Tag>}
+              {isFeatured && <Tag secondary>featured</Tag>}
+            </div>
           </div>
 
           <Position>{position}</Position>

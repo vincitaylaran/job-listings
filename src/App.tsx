@@ -10,7 +10,6 @@ function App() {
   >([])
   const [listings, setListings] = useState<IListing[]>([])
   const [criteria, setCriteria] = useState<string[]>([])
-  const [selectedKeyword, setSelectedKeyword] = useState<string | null>()
 
   useEffect(() => {
     const listingsCopy = JSON.parse(JSON.stringify(data))
@@ -22,7 +21,12 @@ function App() {
         ...listing.languages.map((language) => language),
         ...listing.tools.map((tool) => tool),
       ]
-      return { ...listing, keywords }
+      return {
+        ...listing,
+        keywords,
+        isNew: listing.new,
+        isFeatured: listing.featured,
+      }
     })
 
     setListingsOriginalCopy(listingsWithKeywords)
@@ -35,7 +39,6 @@ function App() {
 
       // I don't push keywordLowercase because I want the text in the components that will render the criteria array to have the original casing.
       setCriteria([...criteria, keyword])
-      setSelectedKeyword(keywordLowercase)
       setListings(
         listings.filter((listing) => {
           return listing.keywords.some(
@@ -46,20 +49,43 @@ function App() {
     }
   }
 
-  useEffect(filter, [criteria, selectedKeyword])
-
   const clear = (): void => {
     const originalListings: IListing[] = listingsOriginalCopy
     setListings(originalListings)
-    setCriteria([])
-    setSelectedKeyword(null)
+
+    if (criteria.length > 1) {
+      setCriteria([])
+    }
+  }
+
+  const remove = (keyword?: string) => {
+    const filteredCriteria = [...criteria].filter((word) => word !== keyword)
+    setCriteria(filteredCriteria)
+
+    if (filteredCriteria.length < 1) {
+      clear()
+    } else {
+      filteredCriteria.forEach((word) => {
+        setListings(
+          listingsOriginalCopy.filter((listing) => {
+            return listing.keywords.some((kw) => kw === word)
+          })
+        )
+      })
+    }
   }
 
   return (
     <main>
-      <Criteria keywords={criteria} onClear={clear} />
+      <Criteria keywords={criteria} onClear={clear} onRemove={remove} />
       {listings.map((listing) => (
-        <Listing {...listing} key={listing.id} onKeyword={filter} />
+        <Listing
+          {...listing}
+          key={listing.id}
+          onKeyword={filter}
+          isNew={listing.isNew}
+          isFeatured={listing.isFeatured}
+        />
       ))}
     </main>
   )
