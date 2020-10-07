@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     const listingsCopy = JSON.parse(JSON.stringify(data))
 
-    let listingsWithKeywords = listingsCopy.map((listing) => {
+    const listingsWithKeywords = listingsCopy.map((listing) => {
       const keywords = [
         listing.role,
         listing.level,
@@ -30,27 +30,23 @@ function App() {
   }, [])
 
   const filter = (keyword?: string): void => {
-    console.log("Listings before filter -> ", listings)
     if (keyword) {
       const keywordLowercase = keyword.toLowerCase()
+
       // I don't push keywordLowercase because I want the text in the components that will render the criteria array to have the original casing.
-      const criteriaCopy: string[] = [...criteria]
-      criteriaCopy.push(keyword)
-      setCriteria(criteriaCopy)
-
-      console.log("criteria -> ", criteria)
-
-      console.log(`keywordLowercase -> ${keywordLowercase}`)
-      setSelectedKeyword("keywordLowercase")
-      console.log(`selectedKeyword -> ${selectedKeyword}`)
+      setCriteria([...criteria, keyword])
+      setSelectedKeyword(keywordLowercase)
       setListings(
         listings.filter((listing) => {
-          return listing.keywords.some((word) => word === selectedKeyword)
+          return listing.keywords.some(
+            (word) => word.toLowerCase() === keywordLowercase
+          )
         })
       )
-      console.log("Listings after filter -> ", listings)
     }
   }
+
+  useEffect(filter, [criteria, selectedKeyword])
 
   const clear = (): void => {
     const originalListings: IListing[] = listingsOriginalCopy
