@@ -15,7 +15,13 @@ const Criteria: React.FC<Props> = ({ keywords, onClear }) => {
 
   return (
     <Row>
-      <div>{keywords ? keywords.map((word) => <span>{word}</span>) : null}</div>
+      <div>
+        {keywords
+          ? keywords.map((word, index) => (
+              <span key={`${word}-${index}`}>{word}</span>
+            ))
+          : null}
+      </div>
       <button onClick={handleClear}>Clear button</button>
     </Row>
   )
