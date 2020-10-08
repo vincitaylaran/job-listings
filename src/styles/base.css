@@ -13,7 +13,8 @@ main {
 }
 
 button,
-a {
+a,
+span {
   transition-duration: 150ms;
 }
 

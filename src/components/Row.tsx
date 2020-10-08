@@ -23,19 +23,26 @@ const StyledRowBody = styled.div`
   justify-content: space-between;
 
   @media all and (max-width: ${BREAKPOINT.mobile}) {
-    flex-direction: column;
+    flex-direction: ${(props) => props.flexDirection};
   }
 `
 
 interface Props {
   children?: React.ReactNode
   style?: object | null
+  breakpointFlexDirection?: "column" | "row"
 }
 
-const Row: React.FC<Props> = ({ children, style }) => {
+const Row: React.FC<Props> = ({
+  children,
+  style,
+  breakpointFlexDirection = "row",
+}) => {
   return (
     <StyledRow style={style ? style : null}>
-      <StyledRowBody>{children}</StyledRowBody>
+      <StyledRowBody flexDirection={breakpointFlexDirection}>
+        {children}
+      </StyledRowBody>
     </StyledRow>
   )
 }
