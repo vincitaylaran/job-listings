@@ -1,7 +1,7 @@
 import React, { Suspense } from "react"
 import Row from "./Row"
 import styled from "styled-components"
-import Button from "./Button"
+import Keyword from "./Keyword"
 import BREAKPOINT from "../styles/breakpoints"
 
 const ListingContent = styled.div`
@@ -16,6 +16,15 @@ const ListingSubcontent = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+
+  span,
+  div {
+    margin-right: 13px;
+
+    @media all and (max-width: ${BREAKPOINT.tablet}) {
+      margin-top: 13px;
+    }
+  }
 
   @media all and (max-width: ${BREAKPOINT.mobile}) {
     border-top: 1px solid #b7c4c4;
@@ -143,6 +152,7 @@ const Listing: React.FC<Props> = ({
   return (
     <Row
       style={isNew && isFeatured ? { borderLeft: "5px solid #5ca5a5" } : null} // TODO: turn this into an object.
+      breakpointFlexDirection="column"
     >
       <ListingContent>
         <Suspense fallback={<div>Loading...</div>}>
@@ -170,9 +180,9 @@ const Listing: React.FC<Props> = ({
       </ListingContent>
       <ListingSubcontent>
         {keywords.map((keyword) => (
-          <Button key={`${keyword}-${id}`} value={keyword} onClick={onKeyword}>
+          <Keyword key={`${keyword}-${id}`} onClick={onKeyword} clickable>
             {keyword}
-          </Button>
+          </Keyword>
         ))}
       </ListingSubcontent>
     </Row>
