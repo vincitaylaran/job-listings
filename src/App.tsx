@@ -36,29 +36,26 @@ function App() {
   const filter = (keyword?: string): void => {
     if (keyword) {
       const keywordLowercase = keyword.toLowerCase()
-
-      // I don't push keywordLowercase because I want the text in the components that will render the criteria array to have the original casing.
-      setCriteria([...criteria, keyword])
-      setListings(
-        listings.filter((listing) => {
-          return listing.keywords.some(
-            (word) => word.toLowerCase() === keywordLowercase
-          )
-        })
-      )
+      if (!criteria.some((word) => word === keyword)) {
+        setCriteria([...criteria, keyword]) // I don't push keywordLowercase because I want the text in the components that will render the criteria array to have the original casing.
+        setListings(
+          listings.filter((listing) => {
+            return listing.keywords.some(
+              (word) => word.toLowerCase() === keywordLowercase
+            )
+          })
+        )
+      }
     }
   }
 
   const clear = (): void => {
     const originalListings: IListing[] = listingsOriginalCopy
     setListings(originalListings)
-
-    if (criteria.length > 1) {
-      setCriteria([])
-    }
+    setCriteria([])
   }
 
-  const remove = (keyword?: string) => {
+  const remove = (keyword?: string): void => {
     const filteredCriteria = [...criteria].filter((word) => word !== keyword)
     setCriteria(filteredCriteria)
 
