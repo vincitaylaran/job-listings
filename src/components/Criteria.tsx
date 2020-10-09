@@ -41,14 +41,15 @@ const StyledRemoveButton = styled.button`
   background-color: #5ca5a5;
   width: 32px;
 
-  @media all and (min-width: ${BREAKPOINT.tablet}){
+  @media all and (min-width: ${BREAKPOINT.tablet}) {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  @media all and (max-width: ${BREAKPOINT.mobile}){
-    padding-right: 40px;
+  @media all and (max-width: ${BREAKPOINT.mobile}) {
+    width: 20px;
+    padding-right: 30px;
   }
 
   &:hover {
