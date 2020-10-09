@@ -37,6 +37,9 @@ const StyledRemoveButton = styled.button`
   outline: none;
   background-color: #5ca5a5;
   width: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: #2b3939;
