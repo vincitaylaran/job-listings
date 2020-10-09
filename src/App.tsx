@@ -10,6 +10,9 @@ function App() {
   >([])
   const [listings, setListings] = useState<IListing[]>([])
   const [criteria, setCriteria] = useState<string[]>([])
+  const [selectedKeyword, setSelectedKeyword] = useState<string | null>(null)
+
+  useEffect(() => {}, [selectedKeyword])
 
   useEffect(() => {
     const listingsCopy = JSON.parse(JSON.stringify(data))
@@ -58,6 +61,10 @@ function App() {
   const remove = (keyword?: string): void => {
     const filteredCriteria = [...criteria].filter((word) => word !== keyword)
     setCriteria(filteredCriteria)
+
+    if (keyword) {
+      setSelectedKeyword(keyword)
+    }
 
     if (filteredCriteria.length < 1) {
       clear()

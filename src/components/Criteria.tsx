@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react"
+import React from "react"
 import Row from "./Row"
 import Keyword from "./Keyword"
 import styled from "styled-components"
@@ -13,12 +13,6 @@ const StyledDiv = styled.div`
   div {
     margin-right: 13px;
   }
-
-  /* @media all and (max-width: ${BREAKPOINT.mobile}) {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-row-gap: 0.9rem;
-  } */
 `
 
 const StyledBorderlessButton = styled.button`
@@ -29,7 +23,7 @@ const StyledBorderlessButton = styled.button`
   font-size: 13px;
   line-height: 24px;
   color: #7c8f8f;
-  width: 17%;
+  background-color: inherit;
 
   &:hover {
     text-decoration: underline;
@@ -43,6 +37,7 @@ const StyledRemoveButton = styled.button`
   cursor: pointer;
   outline: none;
   background-color: #5ca5a5;
+  width: 32px;
 
   &:hover {
     background-color: #2b3939;
@@ -61,26 +56,23 @@ interface Props {
 }
 
 const Criteria: React.FC<Props> = ({ keywords, onClear, onRemove }) => {
-  const buttonEl = useRef<HTMLButtonElement>()
-
   const handleClear = () => {
     if (onClear) {
       onClear()
     }
   }
 
-  const handleRemove = () => {
+  const handleRemove = (e) => {
     if (onRemove) {
-      if (buttonEl.current) {
-        console.log(buttonEl.current.value)
-        onRemove(buttonEl.current.value)
+      if (e.target.value) {
+        onRemove(e.target.value)
       }
     }
   }
 
   return (
     <Row>
-      <StyledDiv style={{ backgroundColor: "red" }}>
+      <StyledDiv>
         {keywords &&
           keywords.map((word, index) => (
             <KeywordWithButton key={`${word}-${index}`}>
@@ -94,11 +86,7 @@ const Criteria: React.FC<Props> = ({ keywords, onClear, onRemove }) => {
               >
                 {word}
               </Keyword>
-              <StyledRemoveButton
-                ref={buttonEl}
-                value={word}
-                onClick={handleRemove}
-              >
+              <StyledRemoveButton value={word} onClick={handleRemove}>
                 <FaTimes style={{ color: "#ffffff" }} />
               </StyledRemoveButton>
             </KeywordWithButton>
