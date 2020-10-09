@@ -3,6 +3,7 @@ import Row from "./Row"
 import Keyword from "./Keyword"
 import styled from "styled-components"
 import { FaTimes } from "react-icons/fa"
+import BREAKPOINT from "../styles/breakpoints"
 
 const StyledDiv = styled.div`
   display: flex;
@@ -37,9 +38,16 @@ const StyledRemoveButton = styled.button`
   outline: none;
   background-color: #5ca5a5;
   width: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  @media all and (min-width: ${BREAKPOINT.tablet}){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media all and (max-width: ${BREAKPOINT.mobile}){
+    padding-right: 15px;
+  }
 
   &:hover {
     background-color: #2b3939;
