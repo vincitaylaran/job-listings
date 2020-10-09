@@ -39,7 +39,7 @@ const StyledRemoveButton = styled.button`
   cursor: pointer;
   outline: none;
   background-color: #5ca5a5;
-  width: 32px;
+  /* width: 32px; */
 
   @media all and (min-width: ${BREAKPOINT.tablet}) {
     display: flex;
@@ -49,7 +49,7 @@ const StyledRemoveButton = styled.button`
 
   @media all and (max-width: ${BREAKPOINT.mobile}) {
     /* width: 5px; */
-    padding-right: 8px;
+    /* padding-right: 8px; */
   }
 
   &:hover {
