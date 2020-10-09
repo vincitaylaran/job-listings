@@ -4,6 +4,29 @@ import data from "./data.json"
 import { Props as IListing } from "./components/Listing"
 import Criteria from "./components/Criteria"
 import Header from "./components/Header"
+import styled from 'styled-components'
+import BREAKPOINT from "./styles/breakpoints"
+
+const CriteriaContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  position: relative;
+  /* bottom: 50px; */
+  min-height: 100px;
+
+  @media all and (max-width: ${BREAKPOINT.mobile}) {
+    height: auto;
+  }
+`
+
+
+
+const ListingsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0;
+`
 
 function App() {
   const [listingsOriginalCopy, setListingsOriginalCopy] = useState<
@@ -11,7 +34,11 @@ function App() {
   >([])
   const [listings, setListings] = useState<IListing[]>([])
   const [criteria, setCriteria] = useState<string[]>([])
+  const [isCriteriaHidden, setIsCriteriaHidden] = useState<boolean>(true)
 
+  useEffect(() => {
+    setIsCriteriaHidden(criteria.length > 0 ? false : true)
+  }, [criteria])
 
   useEffect(() => {
 
@@ -79,7 +106,10 @@ function App() {
     <React.Fragment>
       <Header />
       <main>
-        <Criteria keywords={criteria} onClear={clear} onRemove={remove} />
+      <CriteriaContainer>
+        <Criteria hidden={isCriteriaHidden} keywords={criteria} onClear={clear} onRemove={remove} />
+      </CriteriaContainer>
+      <ListingsContainer>
         {listings.map((listing) => (
           <Listing
             {...listing}
@@ -89,6 +119,7 @@ function App() {
             isFeatured={listing.isFeatured}
           />
         ))}
+      </ListingsContainer>
       </main>
     </React.Fragment>
   )

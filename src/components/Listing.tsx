@@ -55,7 +55,7 @@ const ListingInfoContainer = styled.div`
 
 const CompanyName = styled.span`
   font-style: normal;
-  font-weight: bold;
+  font-weight: bolder;
   font-size: 14px;
   line-height: 16px;
   margin-right: 15px;
@@ -81,7 +81,7 @@ const Tag = styled.span`
 
 const Position = styled.div`
   color: #5ca5a5;
-  font-weight: 700;
+  font-weight: bolder;
   font-size: 18px;
   line-height: 24px;
   color: #000000;
@@ -152,7 +152,7 @@ const Listing: React.FC<Props> = ({
 
   return (
     <Row
-      style={isNew && isFeatured ? { borderLeft: "5px solid #5ca5a5" } : null} // TODO: turn this into an object.
+      style={{ borderLeft: (isNew && isFeatured ? "5px solid #5ca5a5" : "5px solid #ffffff"), minHeight: "100px" }} // TODO: turn this into an object.
       breakpointFlexDirection="column"
     >
       <ListingContent>

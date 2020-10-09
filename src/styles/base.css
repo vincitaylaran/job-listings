@@ -6,12 +6,8 @@ html {
 }
 
 main {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 20px 0;
   position: relative;
-  bottom: 80px;
+  bottom: 50px;
 }
 
 button,

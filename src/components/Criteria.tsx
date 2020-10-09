@@ -52,9 +52,10 @@ interface Props {
   keywords?: string[]
   onClear?: () => void
   onRemove?: (keyword?: string) => void
+  hidden?: boolean
 }
 
-const Criteria: React.FC<Props> = ({ keywords, onClear, onRemove }) => {
+const Criteria: React.FC<Props> = ({ keywords, onClear, onRemove, hidden }) => {
   
   const handleClear = () => {
     if (onClear) {
@@ -70,7 +71,7 @@ const Criteria: React.FC<Props> = ({ keywords, onClear, onRemove }) => {
 
 
   return (
-    <Row style={{ marginBottom: "20px" }}>
+    <Row style={{ marginBottom: "20px", borderLeft: "5px solid #ffffff"}} hidden={hidden}>
       <StyledDiv>
         {keywords &&
           keywords.map((word, index) => (
