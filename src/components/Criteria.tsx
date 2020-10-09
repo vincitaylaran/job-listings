@@ -70,7 +70,7 @@ const Criteria: React.FC<Props> = ({ keywords, onClear, onRemove }) => {
   }
 
   return (
-    <Row>
+    <Row style={{ marginBottom: "20px" }}>
       <StyledDiv>
         {keywords &&
           keywords.map((word, index) => (

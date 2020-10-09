@@ -3,6 +3,7 @@ import Listing from "./components/Listing"
 import data from "./data.json"
 import { Props as IListing } from "./components/Listing"
 import Criteria from "./components/Criteria"
+import Header from "./components/Header"
 
 function App() {
   const [listingsOriginalCopy, setListingsOriginalCopy] = useState<
@@ -80,18 +81,21 @@ function App() {
   }
 
   return (
-    <main>
-      <Criteria keywords={criteria} onClear={clear} onRemove={remove} />
-      {listings.map((listing) => (
-        <Listing
-          {...listing}
-          key={listing.id}
-          onKeyword={filter}
-          isNew={listing.isNew}
-          isFeatured={listing.isFeatured}
-        />
-      ))}
-    </main>
+    <React.Fragment>
+      <Header />
+      <main>
+        <Criteria keywords={criteria} onClear={clear} onRemove={remove} />
+        {listings.map((listing) => (
+          <Listing
+            {...listing}
+            key={listing.id}
+            onKeyword={filter}
+            isNew={listing.isNew}
+            isFeatured={listing.isFeatured}
+          />
+        ))}
+      </main>
+    </React.Fragment>
   )
 }
 
