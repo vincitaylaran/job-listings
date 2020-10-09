@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import BgHeaderDesktop from "../icons/BgHeaderDesktop"
 import BgHeaderMobile from "../icons/BgHeaderMobile"
 import styled from "styled-components"
-import BREAKPOINT from "../styles/breakpoints"
 
 interface Window {
   width: number | undefined
