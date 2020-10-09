@@ -77,6 +77,7 @@ const Tag = styled.span`
   border-radius: 10px;
   letter-spacing: 0.75px;
   margin-right: 7px;
+
 `
 
 const Position = styled.div`
