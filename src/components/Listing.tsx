@@ -22,13 +22,14 @@ const ListingSubcontent = styled.div`
     margin-right: 13px;
 
     @media all and (max-width: ${BREAKPOINT.tablet}) {
-      margin-top: 13px;
+      margin-bottom: 13px;
     }
   }
 
   @media all and (max-width: ${BREAKPOINT.mobile}) {
     border-top: 1px solid #b7c4c4;
     margin-top: 13px;
+    padding-top: 13px;
   }
 `
 
@@ -88,7 +89,7 @@ const Position = styled.div`
   cursor: pointer;
   margin-bottom: 5px;
 
-  @media all and (max-width: ${BREAKPOINT.tablet}) {
+  @media all and (max-width: ${BREAKPOINT.mobile}) {
     margin: 10px 0 5px 0;
     font-size: 15px;
   }

@@ -2,7 +2,6 @@ import React from "react"
 import Row from "./Row"
 import Keyword from "./Keyword"
 import styled from "styled-components"
-import BREAKPOINT from "../styles/breakpoints"
 import { FaTimes } from "react-icons/fa"
 
 const StyledDiv = styled.div`
