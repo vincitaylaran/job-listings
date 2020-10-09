@@ -1,7 +1,7 @@
 import React from "react"
 import Row from "./Row"
 import Keyword from "./Keyword"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 import { FaTimes } from "react-icons/fa"
 import BREAKPOINT from "../styles/breakpoints"
 
