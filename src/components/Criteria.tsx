@@ -49,7 +49,7 @@ const StyledRemoveButton = styled.button`
 
   @media all and (max-width: ${BREAKPOINT.mobile}) {
     width: 10px;
-    padding-right: 20px;
+    padding-right: 30px;
   }
 
   &:hover {
