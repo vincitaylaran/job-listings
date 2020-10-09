@@ -55,19 +55,19 @@ interface Props {
 }
 
 const Criteria: React.FC<Props> = ({ keywords, onClear, onRemove }) => {
+  
   const handleClear = () => {
     if (onClear) {
       onClear()
     }
   }
 
-  const handleRemove = (e) => {
+  const handleRemove = (value) => {
     if (onRemove) {
-      if (e.target.value) {
-        onRemove(e.target.value)
-      }
+      onRemove(value)
     }
   }
+
 
   return (
     <Row style={{ marginBottom: "20px" }}>
@@ -77,7 +77,6 @@ const Criteria: React.FC<Props> = ({ keywords, onClear, onRemove }) => {
             <KeywordWithButton key={`${word}-${index}`}>
               <Keyword
                 clickable={false}
-                onClick={onRemove}
                 style={{
                   borderTopRightRadius: 0,
                   borderBottomRightRadius: 0,
@@ -85,7 +84,7 @@ const Criteria: React.FC<Props> = ({ keywords, onClear, onRemove }) => {
               >
                 {word}
               </Keyword>
-              <StyledRemoveButton value={word} onClick={handleRemove}>
+              <StyledRemoveButton value={word} onClick={() => handleRemove(word)}>
                 <FaTimes style={{ color: "#ffffff" }} />
               </StyledRemoveButton>
             </KeywordWithButton>

@@ -11,11 +11,10 @@ function App() {
   >([])
   const [listings, setListings] = useState<IListing[]>([])
   const [criteria, setCriteria] = useState<string[]>([])
-  const [selectedKeyword, setSelectedKeyword] = useState<string | null>(null)
 
-  useEffect(() => {}, [selectedKeyword])
 
   useEffect(() => {
+
     const listingsCopy = JSON.parse(JSON.stringify(data))
 
     const listingsWithKeywords = listingsCopy.map((listing) => {
@@ -42,6 +41,7 @@ function App() {
       const keywordLowercase = keyword.toLowerCase()
       if (!criteria.some((word) => word === keyword)) {
         setCriteria([...criteria, keyword]) // I don't push keywordLowercase because I want the text in the components that will render the criteria array to have the original casing.
+
         setListings(
           listings.filter((listing) => {
             return listing.keywords.some(
@@ -63,20 +63,15 @@ function App() {
     const filteredCriteria = [...criteria].filter((word) => word !== keyword)
     setCriteria(filteredCriteria)
 
-    if (keyword) {
-      setSelectedKeyword(keyword)
-    }
-
     if (filteredCriteria.length < 1) {
       clear()
     } else {
-      filteredCriteria.forEach((word) => {
-        setListings(
-          listingsOriginalCopy.filter((listing) => {
-            return listing.keywords.some((kw) => kw === word)
-          })
-        )
-      })
+      const filteredListings = listingsOriginalCopy.filter((listing) => {
+
+        // check if the "keywords" array property is a superset of "filteredCriteria".
+        return filteredCriteria.every((word) => listing.keywords.includes(word))
+      })        
+      setListings(filteredListings)
     }
   }
 
