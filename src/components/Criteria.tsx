@@ -47,10 +47,10 @@ const StyledRemoveButton = styled.button`
     align-items: center;
   }
 
-  /* @media all and (max-width: ${BREAKPOINT.mobile}) {
-    width: 5px;
-    padding-right: 25px;
-  } */
+  @media all and (max-width: ${BREAKPOINT.mobile}) {
+    /* width: 5px; */
+    padding-right: 8px;
+  }
 
   &:hover {
     background-color: #2b3939;
